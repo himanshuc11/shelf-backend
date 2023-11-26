@@ -1,5 +1,6 @@
 const admin = require("firebase-admin");
 const serviceAccount = require("./server-keys.json");
+const cors = require('cors');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -35,7 +36,7 @@ async function sendNotification(registrationToken, day = "yesterday") {
     }
 }
 
-app.post('/', async (req, res) => {
+app.post('/', cors(), async (req, res) => {
     try {
         const {
             token,
